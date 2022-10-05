@@ -12,13 +12,14 @@ function get_connect()
     }
 }
 
-function pdo_execute($sql)
+function pdo_execute($sql, $arr_values)
 {
     $sql_args = array_slice(func_get_args(), 1);
     try {
         $conn = get_connect();
         $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
+        $status = $stmt->execute((array)$arr_values);
+        return $status;
     } catch (PDOException $e) {
         throw $e;
     } finally {
