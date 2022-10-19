@@ -5,23 +5,22 @@ class postDAO
 {
     public $table = "posts";
     public $id = "id";
-    public $title = "title";
+    public $title = "name";
     public $description = "description";
     public $image = "image";
-    public $created_at = "created_at";
-    public $user_id = "user_id";
+    public $createAt = "createAt";
+    public $userId = "userId";
     function insert($post)
     {
         $sql = "INSERT INTO $this->table($this->title, $this->description,
-        $this->image, $this->created_at, $this->user_id
-        ) VALUES(?,?,?,?,?)";
+        $this->image, $this->createAt, $this->userId
+        ) VALUES(:$this->title, :$this->description, :$this->image, :$this->createAt, :$this->userId)";
+        unset($post->id);
+        var_dump($sql);
+        $test = "INSERT INTO posts (name, description, image, createAt, userId ) VALUES(:name, :description, :image, :createAt, :userId)";
         pdo_execute(
-            $sql,
-            $post->title,
-            $post->description,
-            $post->image,
-            $post->created_at,
-            $post->user_id
+            $test,
+            $post
         );
     }
 }

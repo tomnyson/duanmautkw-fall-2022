@@ -2,21 +2,20 @@
 class Post
 {
     public $id;
-    public $title;
+    public $name;
     public $description;
     public $image;
-    public $created_at;
-    public $user_id;
+    public $createAt;
+    public $userId;
 
 
-    function __construct($id, $title, $description, $image, $created_at, $user_id)
+    function __construct($name, $description, $image, $createAt, $userId)
     {
-        $this->$id = $id;
-        $this->title = $title;
+        $this->name = $name;
         $this->description = $description;
         $this->image = $image;
-        $this->created_at = $created_at;
-        $this->user_id = $user_id;
+        $this->createAt = $createAt;
+        $this->userId = $userId;
     }
     /**
      * Get the value of id
